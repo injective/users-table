@@ -1,39 +1,43 @@
 <div class="wrapper">
     <h1>Users</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Is Active</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (user of (users$ | async); track user.id) {
-      <tr>
-        <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-        <td>
-          <button type="button" (click)="onToggleActive(user.id)">
-            {{ user.active ? 'Active' : 'Inactive' }}
-          </button>
-        </td>
-        <td>
-          <button class="remove" type="button" (click)="onRemoveUser(user.id)">X</button>
-        </td>
-      </tr>
-    }
-  </tbody>
-</table>
+    <table>
+    <thead>
+        <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Is Active</th>
+        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (user of (users$ | async); track user.id) {
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>
+                    <button type="button" (click)="onToggleActive(user.id)">
+                        {{ user.active ? 'Active' : 'Inactive' }}
+                    </button>
+                </td>
+                <td>
+                    <button class="remove" type="button" (click)="onRemoveUser(user.id)">X</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+    </table>
 
-<button 
-    type="button" 
-    class="add"
-    (click)="openAddUser()" 
-    [disabled]="!(canAddUser$ | async)"
->Add User</button>
+    <button 
+        type="button" 
+        class="add"
+        (click)="openAddUser()" 
+        [disabled]="!(canAddUser$ | async)"
+    >Add User</button>
+
+    @if (!((users$ | async).length < 5)) {
+        <span class="error">You can add up to 5 users</span>
+    }
 </div>
 
 @if (isAdding) {

@@ -1,6 +1,6 @@
 <div class="backdrop" (click)="closed.emit()"></div>
 <div class="modal">
-  <h2 id="addUserTitle">Add User</h2>
+  <h2>Add User</h2>
   <form [formGroup]="usersForm" (ngSubmit)="createUser()">
     <label>
       <span>Name</span>
@@ -30,7 +30,7 @@
         class="stroked" 
         (click)="closed.emit()"
       >Cancel</button>
-      
+
       <button 
         type="submit" 
         class="primary" 
