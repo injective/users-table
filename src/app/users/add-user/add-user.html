@@ -1,0 +1,41 @@
+<div class="backdrop" (click)="closed.emit()"></div>
+<div class="modal">
+  <h2 id="addUserTitle">Add User</h2>
+  <form [formGroup]="usersForm" (ngSubmit)="createUser()">
+    <label>
+      <span>Name</span>
+      <input type="text" formControlName="name" placeholder="Enter name" />
+    </label>
+    @if (usersForm.controls.name.touched && usersForm.controls.name.errors?.['required']) {
+      <div class="hint error">Name is required</div>
+    }
+    @if (usersForm.controls.name.touched && usersForm.controls.name.errors?.['minlength']) {
+      <div class="hint error">Min length is 2</div>
+    }
+    @if (usersForm.controls.name.errors?.['nameTaken']) {
+      <div class="hint error">This name is already exist</div>
+    }
+    @if (usersForm.controls.name.pending) {
+      <div class="hint">Checking name...</div>
+    }
+
+    <label class="checkbox">
+      <input type="checkbox" formControlName="active" />
+      <span>Active</span>
+    </label>
+
+    <div class="actions">
+      <button 
+        type="button" 
+        class="stroked" 
+        (click)="closed.emit()"
+      >Cancel</button>
+      
+      <button 
+        type="submit" 
+        class="primary" 
+        [disabled]="usersForm.invalid || usersForm.pending"
+      >Create</button>
+    </div>
+  </form>
+</div>

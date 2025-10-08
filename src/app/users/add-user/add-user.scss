@@ -1,0 +1,91 @@
+:host {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .4);
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+h2 {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+}
+
+form {
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+}
+
+input[type="text"] {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+button {
+  border: 1px solid blue;
+  background: white;
+  color: blue;
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background: blue;
+    color: white;
+  }
+
+  &.primary {
+    background: blue;
+    color: white;
+    border-color: blue;
+  }
+
+  &:disabled {
+    opacity: .3;
+    cursor: default;
+  }
+}
+
+
+.hint {
+  &.error {
+    color: #d93025;
+  }
+}
